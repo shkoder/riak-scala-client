@@ -33,10 +33,10 @@ resolvers ++= Seq("Spray Repository" at "http://repo.spray.io/")
 resolvers ++= Seq("Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases")
 resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)
 
-libraryDependencies <++= (scalaVersion) { v: String =>
-  val sprayVersion = "1.3.3"
-  val akkaVersion = "2.3.12"
-  val specs2Version = if (v.startsWith("2.10")) "2.4.15" else "2.4.15"
+val sprayVersion = "1.3.3"
+val akkaVersion = "2.3.12"
+
+libraryDependencies ++=
   Seq(
      "com.typesafe.akka"      %%  "akka-actor"        % akkaVersion,
      "com.typesafe.akka"      %%  "akka-slf4j"        % akkaVersion,
@@ -45,10 +45,9 @@ libraryDependencies <++= (scalaVersion) { v: String =>
      "com.github.nscala-time" %%  "nscala-time"       % "1.6.0",
      "com.typesafe.akka"      %%  "akka-testkit"      % akkaVersion   % "test",
      "io.spray"               %%  "spray-testkit"     % sprayVersion  % "test",
-     "org.specs2"             %%  "specs2"            % specs2Version % "test",
+     "org.specs2"             %%  "specs2"            % "2.4.15"      % "test",
      "ch.qos.logback"         %   "logback-classic"   % "1.1.2"       % "provided"
   )
-}
 
 initialCommands in console += {
   List("import com.scalapenos.riak._", "import akka.actor._").mkString("\n")
